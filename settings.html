@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ajustes — Brain Gym Tracker</title>
+  <link rel="stylesheet" href="./styles.css" />
+  <link rel="manifest" href="./manifest.json" />
+  <meta name="theme-color" content="#070a12" />
+  <link rel="icon" href="./icon-192.png" />
+  <link rel="apple-touch-icon" href="./icon-192.png" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Brain Gym" />
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">⚙️</div>
+      <div>
+        <div class="title">Ajustes</div>
+        <div class="subtitle">Edita hábitos (icono, nombre, categoría, orden) — auto-guardado</div>
+      </div>
+    </div>
+
+    <div class="toolbar">
+      <a class="btn ghost" href="./index.html">📅 Calendario</a>
+      <a class="btn ghost" href="./routine.html">⏱️ Rutina</a>
+      <a class="btn ghost" href="./vision.html">🌟 Vision</a>
+      <a class="btn ghost" href="./journal.html">📝 Diario</a>
+      <button id="defaultsBtn" class="btn ghost">Restaurar defaults</button>
+      <span id="sStatus" class="saveStatus">Auto-guardado ON</span>
+    </div>
+  </header>
+
+  <main class="layout singleCol">
+    <section class="card">
+      <div class="cardHeader">
+        <div>
+          <div class="cardTitle">Tus hábitos</div>
+          <div class="muted">Aquí cambias lo que aparece en el checklist.</div>
+        </div>
+      </div>
+
+      <div style="padding:14px;">
+        <form id="addForm" class="reviewBox">
+          <div class="sectionTitle">Agregar hábito</div>
+          <div style="display:flex; gap:10px; flex-wrap:wrap;">
+            <input id="newIcon" class="btn ghost" style="width:90px; text-align:center;" placeholder="🔥" maxlength="3" />
+            <input id="newName" class="btn ghost" style="flex:1;" placeholder="Nombre (ej. 'Matemáticas 60 min')" maxlength="70" />
+            <input id="newCat" class="btn ghost" style="width:180px;" placeholder="Categoría (Salud/Estudio...)" maxlength="20" />
+            <button class="btn" type="submit">Agregar</button>
+          </div>
+          <div class="muted tiny" style="margin-top:8px;">
+            Tip: usa emojis para icono (🏋️ 📚 💻 🚫).
+          </div>
+        </form>
+
+        <div style="height:12px;"></div>
+
+        <div style="height:12px;"></div>
+
+        <div class="reviewBox" id="rewardsBox">
+          <div class="sectionTitle">🎁 Recompensas</div>
+          <div class="muted tiny">Cada cierto puntaje te ganas un “token” de recompensa. Tú decides qué canjear.</div>
+          <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:10px;">
+            <input id="rewardName" class="btn ghost" style="flex:1;" placeholder="Nombre (ej. Hamburguesa 🍔)" />
+            <input id="pointsPerReward" class="btn ghost" style="width:220px;" type="number" min="50" step="10" placeholder="Puntos por recompensa" />
+            <button id="saveRewards" class="btn" type="button">Guardar</button>
+            <button id="redeemOne" class="btn ghost" type="button">Canjear 1</button>
+          </div>
+          <div class="muted tiny" id="rewardMeta" style="margin-top:8px;">—</div>
+          <div class="muted tiny" style="margin-top:6px;">Tip: usa recompensas que NO te destruyan la semana.</div>
+        </div>
+
+        <div style="height:12px;"></div>
+
+        <ul id="list" class="habitsList"></ul>
+      </div>
+    </section>
+  </main>
+
+  <script defer src="./core.js"></script>
+  <script defer src="./settings.js"></script>
+</body>
+</html>

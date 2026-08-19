@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Diario — Brain Gym Tracker</title>
+  <link rel="stylesheet" href="./styles.css" />
+  <link rel="manifest" href="./manifest.json" />
+  <meta name="theme-color" content="#070a12" />
+  <link rel="icon" href="./icon-192.png" />
+  <link rel="apple-touch-icon" href="./icon-192.png" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Brain Gym" />
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">📝</div>
+      <div>
+        <div class="title">Diario</div>
+        <div class="subtitle">Anotaciones + resumen mensual automático (auto-guardado)</div>
+      </div>
+    </div>
+
+    <div class="toolbar">
+      <a class="btn ghost" href="./index.html">📅 Calendario</a>
+      <a class="btn ghost" href="./routine.html">⏱️ Rutina</a>
+      <a class="btn ghost" href="./vision.html">🌟 Vision</a>
+      <a class="btn ghost" href="./skills.html">🧩 Skills</a>
+      <a class="btn ghost" href="./settings.html">⚙️ Ajustes</a>
+    </div>
+  </header>
+
+  <main class="layout singleCol">
+    <section class="card">
+      <div class="cardHeader">
+        <div>
+          <div class="cardTitle">Entrada del día</div>
+          <div class="muted">Elige fecha y escribe. Se guarda solo.</div>
+        </div>
+        <div class="rowBetween" style="gap:10px;">
+          <input id="datePick" class="btn ghost" style="padding:10px 12px;" type="date" />
+          <span id="jStatus" class="saveStatus">Auto-guardado ON</span>
+        </div>
+      </div>
+
+      <div style="padding:14px;">
+        <div class="sectionTitle">Diario (libre)</div>
+        <textarea id="journalText" class="textarea" placeholder="Escribe todo: ideas, fallas, plan, emociones, logros..."></textarea>
+
+        <div class="reviewBox">
+          <div class="sectionTitle">3 líneas obligatorias</div>
+          <div class="muted tiny">1) Gané hoy en… 2) Perdí por… 3) Mañana sí o sí haré…</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="cardHeader">
+        <div>
+          <div class="cardTitle">Resumen del mes</div>
+          <div class="muted" id="monthLabel2">—</div>
+        </div>
+        <button id="copySummary" class="btn ghost">📋 Copiar</button>
+      </div>
+
+      <div style="padding:14px;">
+        <pre id="summaryBox" style="white-space:pre-wrap; margin:0; color:rgba(255,255,255,0.9);"></pre>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">Tip: si quieres “prueba legal”, exporta una vez por semana.</footer>
+
+  <script defer src="./core.js"></script>
+  <script defer src="./journal.js"></script>
+</body>
+</html>

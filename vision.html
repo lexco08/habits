@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vision Board — Brain Gym Tracker</title>
+  <link rel="stylesheet" href="./styles.css" />
+  <link rel="manifest" href="./manifest.json" />
+  <meta name="theme-color" content="#070a12" />
+  <link rel="icon" href="./icon-192.png" />
+  <link rel="apple-touch-icon" href="./icon-192.png" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Brain Gym" />
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">🌟</div>
+      <div>
+        <div class="title">Vision / Anti-Vision</div>
+        <div class="subtitle">Tu rumbo se decide con tus días (amarillo/verde vs rojo)</div>
+      </div>
+    </div>
+
+    <div class="toolbar">
+      <a class="btn ghost" href="./index.html">📅 Calendario</a>
+      <a class="btn ghost" href="./routine.html">⏱️ Rutina</a>
+      <a class="btn ghost" href="./journal.html">📝 Diario</a>
+      <a class="btn ghost" href="./skills.html">🧩 Skills</a>
+      <a class="btn ghost" href="./settings.html">⚙️ Ajustes</a>
+    </div>
+  </header>
+
+  <main class="layout singleCol">
+    <section class="card">
+      <div class="cardHeader">
+        <div>
+          <div class="cardTitle">Medidor del mes</div>
+          <div class="muted" id="monthInfo">—</div>
+        </div>
+        <div id="scoreBadge" class="saveStatus">—</div>
+      </div>
+
+      <div class="meterWrap">
+        <div class="meterBar">
+          <div id="needle" class="meterNeedle" style="left:0%"></div>
+        </div>
+        <div class="meterLabel">
+          <span>Anti-Vision</span>
+          <span>Vision</span>
+        </div>
+      </div>
+
+      <div class="kpiRow">
+        <div class="kpi">
+          <div class="big" id="avgPct">—</div>
+          <div class="small">Promedio % del mes (real)</div>
+        </div>
+        <div class="kpi">
+          <div class="big" id="tierMix">—</div>
+          <div class="small">Verde / Amarillo / Naranja / Rojo</div>
+        </div>
+        <div class="kpi">
+          <div class="big" id="bestStreak">—</div>
+          <div class="small">Mejor racha (≥75%)</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="cardHeader">
+        <div>
+          <div class="cardTitle">Comparativa</div>
+          <div class="muted">Edita tus listas aquí. Se guarda automático.</div>
+        </div>
+        <button id="resetBoard" class="btn ghost">Restaurar listas</button>
+      </div>
+
+      <div class="boardGrid">
+        <div class="boardCard">
+          <h3>🌟 Vision Board (lo que SÍ quiero)</h3>
+          <ul id="visionList" class="boardList"></ul>
+          <div class="reviewBox">
+            <div class="sectionTitle">Agregar</div>
+            <input id="visionInput" class="textarea" style="min-height:70px" placeholder="Escribe 1 objetivo por línea…"></input>
+            <button id="addVision" class="btn" style="margin-top:10px">Agregar</button>
+          </div>
+        </div>
+
+        <div class="boardCard">
+          <h3>🧨 Anti-Vision (lo que NO quiero)</h3>
+          <ul id="antiList" class="boardList"></ul>
+          <div class="reviewBox">
+            <div class="sectionTitle">Agregar</div>
+            <input id="antiInput" class="textarea" style="min-height:70px" placeholder="Escribe 1 consecuencia por línea…"></input>
+            <button id="addAnti" class="btn" style="margin-top:10px">Agregar</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">Regla: mes flojo (rojo) = Anti-Vision se acerca. Mes fuerte (amarillo/verde) = Vision.</footer>
+
+  <script defer src="./core.js"></script>
+  <script defer src="./vision.js"></script>
+</body>
+</html>

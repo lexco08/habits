@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rutina — Brain Gym Tracker</title>
+  <link rel="stylesheet" href="./styles.css" />
+  <link rel="manifest" href="./manifest.json" />
+  <meta name="theme-color" content="#070a12" />
+  <link rel="icon" href="./icon-192.png" />
+  <link rel="apple-touch-icon" href="./icon-192.png" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Brain Gym" />
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">⏱️</div>
+      <div>
+        <div class="title">Rutina</div>
+        <div class="subtitle">Rutina ultra específica por día — auto-guardado</div>
+      </div>
+    </div>
+
+    <div class="toolbar">
+      <a class="btn ghost" href="./index.html">📅 Calendario</a>
+      <a class="btn ghost" href="./vision.html">🌟 Vision</a>
+      <a class="btn ghost" href="./journal.html">📝 Diario</a>
+      <a class="btn ghost" href="./skills.html">🧩 Skills</a>
+      <a class="btn ghost" href="./settings.html">⚙️ Ajustes</a>
+      <span id="rtStatus" class="saveStatus">Auto-guardado ON</span>
+    </div>
+  </header>
+
+  <main class="layout singleCol">
+    <section class="card">
+      <div class="cardHeader">
+        <div>
+          <div class="cardTitle">Rutina del día</div>
+          <div class="muted">Escribe tu plan (horas, reglas, bloques). Se guarda solo.</div>
+        </div>
+        <div class="rowBetween" style="gap:10px;">
+          <button id="prevDay" class="btn ghost">◀</button>
+          <input id="datePick" class="btn ghost" style="padding:10px 12px;" type="date" />
+          <button id="nextDay" class="btn ghost">▶</button>
+        </div>
+      </div>
+
+      <div style="padding:14px;">
+        <div class="kpiRow" style="margin-bottom:12px;">
+          <div class="kpi" style="min-width:200px;">
+            <div class="kpiLabel">Tier del día</div>
+            <div class="kpiValue" id="rtTier">—</div>
+          </div>
+          <div class="kpi">
+            <div class="kpiLabel">Puntos hoy</div>
+            <div class="kpiValue" id="rtPoints">0</div>
+          </div>
+          <div class="kpi">
+            <div class="kpiLabel">Recompensas</div>
+            <div class="kpiValue" id="rtRewards">0</div>
+          </div>
+        </div>
+
+        <div class="boardGrid" style="grid-template-columns: 1.3fr 1fr;">
+          <div class="boardCard">
+            <h3>🧠 Rutina ultra específica</h3>
+            <div class="muted" style="margin-top:-6px; margin-bottom:10px;">
+              Tip: si te cuesta arrancar, usa “Plantilla base” y edítala.
+            </div>
+            <div class="rowBetween" style="gap:10px; margin-bottom:10px;">
+              <button id="applyTemplate" class="btn">🧱 Plantilla base</button>
+              <button id="clearRoutine" class="btn ghost">Limpiar</button>
+            </div>
+            <textarea id="routineText" class="textarea" rows="14" placeholder="Ej: 06:30 despertar → agua → 10 min respiración...
+09:00–11:00 curso...
+16:30–18:45 gym..."></textarea>
+          </div>
+
+          <div class="boardCard">
+            <h3>📵 Reglas del día</h3>
+            <div class="muted" style="margin-top:-6px;">Reglas simples = menos excusas.</div>
+            <textarea id="rulesText" class="textarea" rows="7" placeholder="Ej: No teléfono hasta 08:00.
+Música solo en caminar/gym.
+Cero TikTok."></textarea>
+
+            <h3 style="margin-top:14px;">🍗 Comidas del día</h3>
+            <div class="muted" style="margin-top:-6px;">Plan rápido (prote + energía).</div>
+            <textarea id="mealsText" class="textarea" rows="6" placeholder="Ej: Desayuno: leche + cheerios + huevo...
+Comida: pollo + arroz + verduras...
+Cena: pollo/huevo + fruta..."></textarea>
+
+            <div class="muted" style="margin-top:10px;">
+              Nota: Checklist académico (PDFs) = EN PAUSA (punto 3). Aquí solo rutina.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="cardHeader">
+        <div>
+          <div class="cardTitle">Sistema de niveles (punto 4)</div>
+          <div class="muted">Cómo se califica el día + cómo se desbloquean recompensas.</div>
+        </div>
+      </div>
+
+      <div style="padding:14px;">
+        <div class="boardGrid" style="grid-template-columns: 1fr 1fr;">
+          <div class="boardCard">
+            <h3>🎨 Tier por % de hábitos</h3>
+            <ul class="boardList">
+              <li><b>Rojo</b>: &lt; 50%</li>
+              <li><b>Naranja</b>: ≥ 50%</li>
+              <li><b>Amarillo</b>: ≥ 75%</li>
+              <li><b>Verde</b>: 100%</li>
+            </ul>
+            <div class="muted">Regla especial: si estás por debajo de 50%, cuenta como 0% (rojo).</div>
+          </div>
+          <div class="boardCard">
+            <h3>🏆 Recompensas por puntos</h3>
+            <div class="muted" style="margin-top:-6px;">Se configuran en Ajustes → Recompensas.</div>
+            <ul class="boardList">
+              <li>Vas acumulando puntos por hábitos + challenges + skills.</li>
+              <li>Cuando llegas al costo, se desbloquea 1 recompensa.</li>
+              <li>Redeem = “gastar” puntos (queda registrado).</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script defer src="./core.js"></script>
+  <script defer src="./routine.js"></script>
+</body>
+</html>

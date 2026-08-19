@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Brain Gym Tracker</title>
+  <link rel="stylesheet" href="./styles.css" />
+  <link rel="manifest" href="./manifest.json" />
+  <meta name="theme-color" content="#070a12" />
+  <link rel="icon" href="./icon-192.png" />
+  <link rel="apple-touch-icon" href="./icon-192.png" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Brain Gym" />
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">🧠🏋️</div>
+      <div>
+        <div class="title">Brain Gym Tracker</div>
+        <div class="subtitle">Calendario + hábitos + bitácora — guardado automático</div>
+      </div>
+    </div>
+
+    <div class="toolbar">
+      <button id="prevMonth" class="btn ghost" title="Mes anterior">←</button>
+      <div id="monthLabel" class="monthLabel">—</div>
+      <button id="nextMonth" class="btn ghost" title="Mes siguiente">→</button>
+
+      <button id="todayBtn" class="btn">📍 Hoy</button>
+
+      <a class="btn ghost" href="./routine.html">⏱️ Rutina</a>
+
+      <a class="btn ghost" href="./vision.html">🌟 Vision</a>
+      <a class="btn ghost" href="./journal.html">📝 Diario</a>
+      <a class="btn ghost" href="./skills.html">🧩 Skills</a>
+      <a class="btn ghost" href="./settings.html">⚙️ Ajustes</a>
+
+      <button id="exportBtn" class="btn ghost">⬇️ Exportar</button>
+      <label class="btn ghost fileLabel">
+        ⬆️ Importar
+        <input id="importInput" type="file" accept="application/json" />
+      </label>
+      <button id="resetBtn" class="btn danger ghost">🧨 Reset</button>
+    </div>
+  </header>
+
+  <main class="layout">
+    <section class="card calendarCard">
+      <div class="cardHeader">
+        <div class="cardTitle">Calendario</div>
+        <div class="muted" id="miniStats">—</div>
+      </div>
+
+      <div class="dow">
+        <div>L</div><div>M</div><div>X</div><div>J</div><div>V</div><div>S</div><div>D</div>
+      </div>
+
+      <div id="calendarGrid" class="calendarGrid"></div>
+
+      <div class="legend">
+        <span class="dot red"></span> <50% (rojo)
+        <span class="dot orange"></span> ≥50% (naranja)
+        <span class="dot yellow"></span> ≥75% (amarillo)
+        <span class="dot green"></span> 100% (verde)
+        <span class="hint">Color = tu “tier” del día</span>
+      </div>
+    </section>
+
+    <section class="card dayCard">
+      <div class="cardHeader">
+        <div>
+          <div id="dayTitle" class="cardTitle">—</div>
+          <div id="dayMeta" class="muted">—</div>
+        </div>
+        <div class="dayActions">
+          <button id="checkAllBtn" class="btn ghost">✅ Marcar todo</button>
+          <button id="uncheckAllBtn" class="btn ghost">⬜ Desmarcar</button>
+          <button id="clearDayBtn" class="btn ghost">🧼 Limpiar día</button>
+        </div>
+      </div>
+
+      <div class="progressRow">
+        <div class="progressWrap">
+          <div class="progressBar"><div id="progressFill" class="progressFill"></div></div>
+          <div id="progressText" class="progressText">—</div>
+        </div>
+        <div class="streakBox">
+          <div class="streakNum" id="streakNum">0</div>
+          <div class="streakLabel">racha (≥75%)</div>
+        </div>
+        <div class="streakBox">
+          <div class="streakNum" id="todayPts">0</div>
+          <div class="streakLabel">puntos hoy</div>
+        </div>
+        <div class="streakBox">
+          <div class="streakNum" id="rewardAvail">0</div>
+          <div class="streakLabel">recompensas</div>
+        </div>
+      </div>
+
+      <div class="split">
+        <div>
+          <div class="sectionTitle">Checklist</div>
+          <ul id="habitsList" class="habitsList"></ul>
+          <div class="muted tiny">Edita hábitos en <b>Ajustes</b>. Aquí solo marcas.</div>
+          <div class="challengeCard" style="margin-top:12px;">
+            <div class="challengeRow">
+              <div class="sectionTitle">⚡ Reto del día</div>
+              <span class="smallTag" id="challengeTag">+10 pts</span>
+            </div>
+            <div class="muted" id="challengeText">—</div>
+            <label class="checkboxLine">
+              <input id="challengeCheck" type="checkbox" />
+              <span>Hecho</span>
+            </label>
+            <div class="muted tiny" id="challengeDetail" style="margin-top:6px;">—</div>
+          </div>
+
+          <div class="challengeCard">
+            <div class="challengeRow">
+              <div class="sectionTitle">🔥 Bonus del mes</div>
+              <span class="smallTag">+20 pts c/u</span>
+            </div>
+            <div id="monthlyBonusWrap" class="muted" style="margin-top:10px;"></div>
+          </div>
+
+        </div>
+
+        <div>
+          <div class="sectionTitle rowBetween">
+            <span>Bitácora del día</span>
+            <span id="saveStatus" class="saveStatus">Auto-guardado ON</span>
+          </div>
+          <textarea id="dayNote" class="textarea" placeholder="¿Qué hiciste hoy? ¿Qué falló? ¿Qué mejorar mañana?"></textarea>
+
+          <div class="reviewBox">
+            <div class="sectionTitle">Cierre rápido (30s)</div>
+            <div class="muted tiny">
+              1) ¿Qué hice bien? 2) ¿Qué me saboteó? 3) ¿Qué haré mañana sí o sí?
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">Todo se guarda automático en tu navegador. Exportar = backup.</footer>
+
+  <script defer src="./core.js"></script>
+  <script defer src="./app.js"></script>
+</body>
+</html>

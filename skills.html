@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Skills — Brain Gym Tracker</title>
+  <link rel="stylesheet" href="./styles.css" />
+  <link rel="manifest" href="./manifest.json" />
+  <meta name="theme-color" content="#070a12" />
+  <link rel="icon" href="./icon-192.png" />
+  <link rel="apple-touch-icon" href="./icon-192.png" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Brain Gym" />
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">🧩</div>
+      <div>
+        <div class="title">Skills</div>
+        <div class="subtitle">Entrena habilidades (social, letra, cálculo mental…) y suma puntos</div>
+      </div>
+    </div>
+
+    <div class="toolbar">
+      <a class="btn ghost" href="./index.html">📅 Calendario</a>
+      <a class="btn ghost" href="./routine.html">⏱️ Rutina</a>
+      <a class="btn ghost" href="./vision.html">🌟 Vision</a>
+      <a class="btn ghost" href="./journal.html">📝 Diario</a>
+      <a class="btn ghost" href="./settings.html">⚙️ Ajustes</a>
+      <span id="skStatus" class="saveStatus">Auto-guardado ON</span>
+    </div>
+  </header>
+
+  <main class="layout singleCol">
+    <section class="card">
+      <div class="cardHeader">
+        <div>
+          <div class="cardTitle">Skills de hoy</div>
+          <div class="muted">Marca lo que practicaste hoy (se suma a tus puntos).</div>
+        </div>
+        <div class="rowBetween" style="gap:10px;">
+          <input id="datePick" class="btn ghost" style="padding:10px 12px;" type="date" />
+          <span class="saveStatus" id="skPoints">+0 pts</span>
+        </div>
+      </div>
+
+      <div style="padding:14px;">
+        <div id="skillsList" class="boardGrid" style="grid-template-columns: 1fr 1fr;"></div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="cardHeader">
+        <div>
+          <div class="cardTitle">Tips (biblioteca rápida)</div>
+          <div class="muted">Lo que te da más “cerebro mamado” con menos humo.</div>
+        </div>
+      </div>
+
+      <div style="padding:14px;">
+        <div class="boardGrid" style="grid-template-columns: 1fr 1fr;">
+          <div class="boardCard">
+            <h3>📚 Estudio de verdad</h3>
+            <ul class="boardList">
+              <li>Active recall: pregúntate y responde SIN ver notas.</li>
+              <li>Spaced repetition: repasa con separación (días).</li>
+              <li>Interleaving: mezcla temas (no solo uno).</li>
+            </ul>
+          </div>
+          <div class="boardCard">
+            <h3>💤 Sueño y foco</h3>
+            <ul class="boardList">
+              <li>Horario fijo de dormir/despertar.</li>
+              <li>Pantallas fuera 45 min antes.</li>
+              <li>Cuarto oscuro y fresco.</li>
+            </ul>
+          </div>
+          <div class="boardCard">
+            <h3>🧘 Atención</h3>
+            <ul class="boardList">
+              <li>10 min diarios de respiración/meditación.</li>
+              <li>Caminar 10 min sin música (presencia).</li>
+              <li>Bloques sin celular.</li>
+            </ul>
+          </div>
+          <div class="boardCard">
+            <h3>🧠 Neuroplasticidad</h3>
+            <ul class="boardList">
+              <li>Aprende 1 micro-habilidad nueva por semana.</li>
+              <li>Haz retos incómodos (mano izquierda).</li>
+              <li>Sube dificultad gradual, no de golpe.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script defer src="./core.js"></script>
+  <script defer src="./skills.js"></script>
+</body>
+</html>
